@@ -9,7 +9,6 @@ args=parser.parse_args()
 
 try: #receive input files from command line
     with open(args.animal_file) as animal_file, open(args.noun_file) as noun_file, open(args.verb_file) as verb_file:
-        #TODO: Ascertain that this code works by printing out first lines of each file
         #read each file into a list?
         for line in animal_file:
             print(line)
