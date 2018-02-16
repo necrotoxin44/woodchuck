@@ -1,13 +1,13 @@
 import argparse
 
-
 parser = argparse.ArgumentParser()
 parser.add_argument("animal_file", help="file of animal names")
 parser.add_argument("noun_file", help="file of nouns")
 parser.add_argument("verb_file", help="file of verbs")
 args=parser.parse_args()
 #optional argument for output file?
-try: #receive input files from command line
+#print progress percentage?
+try:
     with open(args.animal_file) as animal_file, open(args.noun_file) as noun_file, open(args.verb_file) as verb_file, open("woodchuckoutput.txt", "w+") as output:
         for noun in noun_file:
             n = (noun.strip()).lower()
