@@ -30,7 +30,7 @@ try:
                     verb_file.seek(0)
             noun_file.seek(0)
             count += 1
-            print("Prograss: " + str(100 * (count/total)))
+            print("Progress: " + str(100 * (count/total)))
 
 
 except OSError:
