@@ -1,4 +1,5 @@
 import argparse
+import sys
 
 parser = argparse.ArgumentParser()
 parser.add_argument("animal_file", help="file of animal names")
