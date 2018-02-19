@@ -8,7 +8,17 @@ parser.add_argument("noun_file", help="file of nouns")
 parser.add_argument("verb_file", help="file of verbs")
 args=parser.parse_args()
 #optional argument for output file?
-#print progress percentage?
+
+#function courtesy of vladignatyev
+def progress(count, total, status=''):
+    bar_len = 60
+    filled_len = int(round(bar_len * count / float(total)))
+
+    percents = round(100.0 * count / float(total), 1)
+    bar = '=' * filled_len + '-' * (bar_len - filled_len)
+
+    sys.stdout.write('[%s] %s%s ...%s\r' % (bar, percents, '%', status))
+sys.stdout.flush()
 
 try:
     total = 0
@@ -36,7 +46,8 @@ try:
                     break
             noun_file.seek(0)
             count += 1
-            print("Progress: " + str(100 * (count/total)))
+            progress(count,total)
+            #print("Progress: " + str(100 * (count/total)))
     end = time.time()
     print("Total elapsed time: " + str(end - start) + " seconds")
 
