@@ -6,10 +6,10 @@ parser = argparse.ArgumentParser()
 parser.add_argument("animal_file", help="file of animal names")
 parser.add_argument("noun_file", help="file of nouns")
 parser.add_argument("verb_file", help="file of verbs")
+parser.add_argument("output_file", help="file to output 'woodchuck' names to")
 args=parser.parse_args()
-#optional argument for output file?
 
-#function courtesy of vladignatyev
+#progress display function courtesy of vladignatyev
 def progress(count, total, status=''):
     bar_len = 60
     filled_len = int(round(bar_len * count / float(total)))
@@ -22,12 +22,13 @@ sys.stdout.flush()
 
 try:
     total = 0
-    with open(args.animal_file) as animal_file:#get animal_file length
+    #get animal_file's line count
+    with open(args.animal_file) as animal_file:
         for animal in animal_file:
             total += 1
 
     start = time.time()
-    with open(args.animal_file) as animal_file, open(args.noun_file) as noun_file, open(args.verb_file) as verb_file, open("woodchuckoutput.txt", "w+") as output:
+    with open(args.animal_file) as animal_file, open(args.noun_file) as noun_file, open(args.verb_file) as verb_file, open(args.output_file, "w+") as output:
         count = 0
         for animal in animal_file:
             a = (animal.strip()).lower()
@@ -42,12 +43,12 @@ try:
                             found = True
                             break
                     verb_file.seek(0)
+                #break before found again and duplicates added
                 if(found):
                     break
             noun_file.seek(0)
             count += 1
-            progress(count,total)
-            #print("Progress: " + str(100 * (count/total)))
+            progress(count,total, 'search progress')
     end = time.time()
     print("Total elapsed time: " + str(end - start) + " seconds")
 
