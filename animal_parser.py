@@ -16,9 +16,8 @@ def parse_and_append(input_path, output_file):
             reader = csv.reader(file, delimiter='|')
             previous = " "
             for str_list in reader:
-                #check is an English vernacular name
+                #check if it is an English vernacular name
                 if(("[VR]" in str_list[0]) and ("English" in str_list[5])):
-                    print(str_list[3])
                     output.write(str(str_list[3]) + '\n')
     except OSError:
         sys.exit("file not found")
