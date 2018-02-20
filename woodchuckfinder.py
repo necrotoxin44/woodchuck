@@ -2,7 +2,7 @@ import argparse
 import sys
 import time
 
-parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser(prog='woodchuckfinder.py')
 parser.add_argument("animal_file", help="file of animal names")
 parser.add_argument("noun_file", help="file of nouns")
 parser.add_argument("verb_file", help="file of verbs")
