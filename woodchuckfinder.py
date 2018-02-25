@@ -9,7 +9,7 @@ parser.add_argument("verb_file", help="file of verbs")
 parser.add_argument("output_file", help="file to output 'woodchuck' names to")
 args=parser.parse_args()
 
-#progress display function courtesy of vladignatyev
+#progress bar display function courtesy of vladignatyev
 def progress(count, total, status=''):
     bar_len = 60
     filled_len = int(round(bar_len * count / float(total)))
@@ -35,16 +35,15 @@ try:
             found = False
             for noun in noun_file:
                 n = (noun.strip()).lower()
-                if(n in a):
+                if(n in a):#only search noun+verb combinations if at least noun found
                     for verb in verb_file:
                         v = (verb.strip()).lower()
-                        if(((n + v) in a.lower()) or ((n + ' ' + v) in a.lower())):
+                        if((n + v) in a.lower()):
                             output.write(animal.strip() + '\n')
                             found = True
                             break
                     verb_file.seek(0)
-                #break before found again and duplicates added
-                if(found):
+                if(found):#break before found again and duplicates added
                     break
             noun_file.seek(0)
             count += 1
