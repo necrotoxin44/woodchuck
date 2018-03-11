@@ -38,7 +38,7 @@ try:
                 if(n in a):#only search noun+verb combinations if at least noun found
                     for verb in verb_file:
                         v = (verb.strip()).lower()
-                        if((n + v) in a.lower()):
+                        if((n + v) in a.lower() or (n + ' ' + v) in a.lower()):
                             output.write(animal.strip() + '\n')
                             found = True
                             break
@@ -49,7 +49,7 @@ try:
             count += 1
             progress(count,total, 'search progress')
     end = time.time()
-    print("Total elapsed time: " + str(end - start) + " seconds")
+    print("Total elapsed time: %s seconds" % (end-start))
 
 
 except OSError:
